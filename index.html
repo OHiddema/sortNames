@@ -7,19 +7,15 @@
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
    <title>Document</title>
    <script>
+      // Even less code when we put the sorted result in another textarea element!
       function sorteer() {
-         let myText = document.getElementById('myTextarea').value;
-         let lines = myText.split('\n');
+         let mySortedList = document.getElementById('outputTextarea');
+         let inputTxt = document.getElementById('inputTextarea').value;
+         let lines = inputTxt.split('\n');
          lines.sort();
-         var mySortedList = document.getElementById('sortedList');
-
-         for (let i = 0; i < lines.length; i++) {
-            let li = document.createElement('LI');
-            let text = document.createTextNode(lines[i]);
-            if (text.length != 0) {
-               console.log(text);
-               li.appendChild(text);
-               mySortedList.appendChild(li);
+         for (let i=0; i<lines.length; i++) {
+            if (lines[i].length != 0) {
+               mySortedList.value += lines[i] + '\n';
             }
          }
       }
@@ -27,11 +23,9 @@
 </head>
 
 <body>
-   <textarea name="myTextarea" id="myTextarea" cols="30" rows="10"></textarea>
-   <br><br>
+   <textarea id="inputTextarea" cols="30" rows="10"></textarea>
    <button onclick='sorteer()'>Sorteer!</button>
-   <ul id='sortedList'>
-   </ul>
+   <textarea id="outputTextarea" cols="30" rows="10"></textarea>
 </body>
 
 </html>
